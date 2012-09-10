@@ -45,6 +45,8 @@ module Web1
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    config.active_record.whitelist_attributes = true
+
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
 
