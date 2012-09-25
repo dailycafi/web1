@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
 
   has_many :followers, through: :reverse_relationships, source: :follower
+
+  has_many :productinfos, dependent: :destroy
   
 
   before_save { |user| user.email = email.downcase }

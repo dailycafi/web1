@@ -8,7 +8,7 @@
 			</h1>
 		</section>
     	<section>
-      		<%= render 'shared/stats' %>
+      		<%= render :partial => '/shared/stats' %>
     	</section>
 	</aside>
 	<div class="span8">
@@ -19,6 +19,21 @@
 			<%= render @microposts %>
 		</ol>
 		<%= will_paginate @microposts %>
+		<% end %>
+	</div>
+	<h3>Search by category</h3>
+	<%= form_tag users_path, :method => 'get' do %>
+  		<p>
+    		<%= text_field_tag :search, params[:search] %>
+    		<%= submit_tag "Search", :name => nil %>
+  		</p>
+	<% end %>
+	<div class="span8">
+		<% if @user.productinfos.any? %>
+			<h3>Product Information(<%= @user.productinfos.count %>)</h3>
+			<ol class="micoposts">
+				<%= render @productinfos %>
+			</ol>
 		<% end %>
 	</div>
 </div>

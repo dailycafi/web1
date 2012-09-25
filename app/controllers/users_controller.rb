@@ -5,12 +5,17 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.paginate(page: params[:page])
+    if params[:search]
+      @users = Productinfo.find(:all, :conditions => ['category LIKE ?', "%#{params[:search]}"])
+    else
+      @users = Productinfo.find(:all)
+    end
   end
 
   def show
   	@user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    @productinfos = @user.productinfos.paginate(page: params[:page])
   end
 
   def new
